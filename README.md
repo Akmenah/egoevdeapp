@@ -1,4 +1,5 @@
 # EgoEvde 🚌
+by Akmenah
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.9.0+-02569B?logo=flutter)](https://flutter.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -32,7 +33,7 @@ A real-time bus tracking application for Ankara's EGO public transportation syst
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/egoevdeapp.git
+git clone https://github.com/akmenah/egoevdeapp.git
 cd egoevdeapp
 ```
 
@@ -132,7 +133,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact 📧
 
-Project Link: [https://github.com/yourusername/egoevdeapp](https://github.com/yourusername/egoevdeapp)
+Project Link: [https://github.com/akmenah/egoevdeapp](https://github.com/akmenah/egoevdeapp)
 
 ---
 
