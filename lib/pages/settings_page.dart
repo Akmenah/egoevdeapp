@@ -3,13 +3,10 @@
 /// Allows users to:
 /// - Choose language (English/Turkish)
 /// - Choose theme mode (Light/Dark/System)
-/// - Delete all saved route data
 library;
 
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
-import '../models/app_theme.dart';
-import '../services/route_storage_service.dart';
 import '../services/preferences_service.dart';
 import '../main.dart';
 
@@ -37,50 +34,6 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _currentThemeMode = themeMode;
     });
-  }
-
-  /// Deletes all saved routes after user confirmation.
-  Future<void> _deleteAllData(BuildContext context) async {
-    final l10n = AppLocalizations.of(context)!;
-
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.confirmDeleteAll),
-        content: Text(l10n.deleteAllDataConfirmation),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(l10n.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            style: TextButton.styleFrom(
-              foregroundColor: AppTheme.colors(context).deleteAction,
-            ),
-            child: Text(l10n.delete),
-          ),
-        ],
-      ),
-    );
-
-    if (confirmed == true) {
-      // Delete all routes
-      final routes = RouteStorageService.getRoutes();
-      for (int i = routes.length - 1; i >= 0; i--) {
-        await RouteStorageService.removeRoute(i);
-      }
-
-      if (!mounted) return;
-
-      // Show success message
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.allDataDeleted)));
-
-      // Return to previous screen
-      Navigator.pop(context, true);
-    }
   }
 
   @override
@@ -146,22 +99,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           const Divider(),
-
-          // Delete All Data
-          ListTile(
-            leading: Icon(
-              Icons.delete_forever,
-              color: AppTheme.colors(context).deleteActionText,
-            ),
-            title: Text(
-              l10n.deleteAllData,
-              style: TextStyle(
-                color: AppTheme.colors(context).deleteActionText,
-              ),
-            ),
-            subtitle: Text(l10n.deleteAllDataSubtitle),
-            onTap: () => _deleteAllData(context),
-          ),
         ],
       ),
     );

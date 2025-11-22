@@ -17,14 +17,49 @@ class RouteStorageService {
   /// Key used to store routes in SharedPreferences
   static const String _routesKey = 'saved_routes';
 
+  /// Key used to store the last chosen route index
+  static const String _lastChosenRouteIndexKey = 'last_chosen_route_index';
+
   /// In-memory cache of all routes for quick access
   static List<RouteDouble> _routes = [];
+
+  /// Index of the last chosen route
+  static int? _lastChosenRouteIndex;
 
   /// Returns the current in-memory list of routes.
   ///
   /// This is a live reference, so modifications to the returned list
   /// will not be persisted unless [saveRoutes] is called.
   static List<RouteDouble> getRoutes() => _routes;
+
+  /// Returns the last chosen route, or the first route if none was chosen.
+  ///
+  /// Returns null if no routes exist.
+  static RouteDouble? getLastChosenRoute() {
+    if (_routes.isEmpty) return null;
+    if (_lastChosenRouteIndex != null &&
+        _lastChosenRouteIndex! >= 0 &&
+        _lastChosenRouteIndex! < _routes.length) {
+      return _routes[_lastChosenRouteIndex!];
+    }
+    return _routes.first;
+  }
+
+  /// Sets the last chosen route by its index.
+  static Future<void> setLastChosenRouteIndex(int index) async {
+    if (index >= 0 && index < _routes.length) {
+      _lastChosenRouteIndex = index;
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setInt(_lastChosenRouteIndexKey, index);
+    }
+  }
+
+  /// Gets the index of a specific route in the list.
+  ///
+  /// Returns -1 if the route is not found.
+  static int getRouteIndex(RouteDouble route) {
+    return _routes.indexOf(route);
+  }
 
   /// Adds a new route to the list and saves to local storage.
   ///
@@ -78,6 +113,9 @@ class RouteStorageService {
     final prefs = await SharedPreferences.getInstance();
     final jsonString = prefs.getString(_routesKey);
 
+    // Load last chosen route index
+    _lastChosenRouteIndex = prefs.getInt(_lastChosenRouteIndexKey);
+
     if (jsonString == null) {
       _routes = [];
       return false; // No saved routes
@@ -88,6 +126,14 @@ class RouteStorageService {
       _routes = jsonList
           .map((item) => RouteDouble.fromJson(item as Map<String, dynamic>))
           .toList();
+
+      // Validate last chosen route index
+      if (_lastChosenRouteIndex != null &&
+          (_lastChosenRouteIndex! < 0 ||
+              _lastChosenRouteIndex! >= _routes.length)) {
+        _lastChosenRouteIndex = null;
+      }
+
       return true;
     } catch (e) {
       _routes = [];
@@ -101,6 +147,8 @@ class RouteStorageService {
   static Future<void> clearRoutes() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_routesKey);
+    await prefs.remove(_lastChosenRouteIndexKey);
     _routes = [];
+    _lastChosenRouteIndex = null;
   }
 }

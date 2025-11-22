@@ -63,13 +63,19 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  /// Initializes the display by loading and fetching the first saved route.
+  /// Initializes the display by loading and fetching the last chosen route.
   ///
-  /// If routes exist, loads the first one and starts auto-refresh timers.
+  /// If routes exist, loads the last chosen one (or first if none chosen) and starts auto-refresh timers.
   /// Updates UI state to show loading/error/success.
   void initTable() async {
-    final routeInfos = RouteStorageService.getRoutes();
-    if (routeInfos.isEmpty) return;
+    final lastChosenRoute = RouteStorageService.getLastChosenRoute();
+    if (lastChosenRoute == null) {
+      setState(() {
+        firstDurak = null;
+        secondDurak = null;
+      });
+      return;
+    }
 
     setState(() {
       isLoading = true;
@@ -81,11 +87,11 @@ class _HomePageState extends State<HomePage> {
       secondDurak?.disposeTimer();
 
       // Fetch buses for the selected route double
-      await routeInfos.first.fetchBuses();
+      await lastChosenRoute.fetchBuses();
 
       setState(() {
-        firstDurak = routeInfos.first.first;
-        secondDurak = routeInfos.first.second;
+        firstDurak = lastChosenRoute.first;
+        secondDurak = lastChosenRoute.second;
         isLoading = false;
       });
 
@@ -179,6 +185,12 @@ class _HomePageState extends State<HomePage> {
                 },
                 onAddRoute: () {
                   if (mounted) setState(() {});
+                },
+                onRouteDeleted: () {
+                  if (mounted) {
+                    setState(() {});
+                    initTable();
+                  }
                 },
               ),
               // Display bus info or loading/error state

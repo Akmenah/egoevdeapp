@@ -21,6 +21,7 @@ class RouteButtonsWidget extends StatefulWidget {
     required this.onRouteSelected,
     required this.onAddRoute,
     required this.onLoadingChanged,
+    required this.onRouteDeleted,
   });
 
   /// Whether data is currently being loaded
@@ -34,6 +35,9 @@ class RouteButtonsWidget extends StatefulWidget {
 
   /// Callback to set loading state
   final Function(bool) onLoadingChanged;
+
+  /// Callback when a route is deleted
+  final VoidCallback onRouteDeleted;
 
   @override
   State<RouteButtonsWidget> createState() => _RouteButtonsWidgetState();
@@ -86,7 +90,7 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
         setState(() {
           _isDeleteMode = false;
         });
-        widget.onAddRoute(); // Refresh parent
+        widget.onRouteDeleted(); // Refresh parent and reload data
       }
     } else {
       // Exit delete mode if cancelled
@@ -294,6 +298,11 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                         // Normal mode: clicking loads and displays route data
                         widget.onLoadingChanged(true);
                         try {
+                          // Save this as the last chosen route
+                          await RouteStorageService.setLastChosenRouteIndex(
+                            index - 4,
+                          );
+
                           // Fetch buses for the selected route double
                           await routeDouble.fetchBuses();
                           widget.onRouteSelected(
