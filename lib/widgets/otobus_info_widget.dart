@@ -13,7 +13,7 @@ import '../models/otobus_info.dart';
 import '../models/app_theme.dart';
 
 const double headerFontSize = 42;
-const double dataFontSize = 96;
+const double dataFontSize = 100;
 const double detailFontSize = 24;
 
 /// Preview showing single route with sample bus data
