@@ -135,5 +135,45 @@
     "noBusesFound": "No buses found on route.",
     "@noBusesFound": {
         "description": "Message when no buses are available"
+    },
+    "deleteRoutes": "Delete Routes",
+    "@deleteRoutes": {
+        "description": "Button to enter delete mode"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "Cancel button text"
+    },
+    "confirmDelete": "Confirm Delete",
+    "@confirmDelete": {
+        "description": "Delete confirmation dialog title"
+    },
+    "deleteRouteConfirmation": "Delete route",
+    "@deleteRouteConfirmation": {
+        "description": "Delete route confirmation message"
+    },
+    "delete": "Delete",
+    "@delete": {
+        "description": "Delete button text"
+    },
+    "editRoutes": "Edit Routes",
+    "@editRoutes": {
+        "description": "Button to enter edit mode"
+    },
+    "editRouteTitle": "Edit Stop Pair",
+    "@editRouteTitle": {
+        "description": "Title for edit route page"
+    },
+    "updateRouteButton": "Update Stop Pair",
+    "@updateRouteButton": {
+        "description": "Button to update the route"
+    },
+    "routeUpdatedSuccess": "Stop pair updated successfully!",
+    "@routeUpdatedSuccess": {
+        "description": "Success message when route is updated"
+    },
+    "arrived": "Arrived",
+    "@arrived": {
+        "description": "Bus has arrived at the stop"
     }
 }

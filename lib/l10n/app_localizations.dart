@@ -301,6 +301,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No buses found on route.'**
   String get noBusesFound;
+
+  /// Button to enter delete mode
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Routes'**
+  String get deleteRoutes;
+
+  /// Cancel button text
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Delete confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Delete'**
+  String get confirmDelete;
+
+  /// Delete route confirmation message
+  ///
+  /// In en, this message translates to:
+  /// **'Delete route'**
+  String get deleteRouteConfirmation;
+
+  /// Delete button text
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Button to enter edit mode
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Routes'**
+  String get editRoutes;
+
+  /// Title for edit route page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Stop Pair'**
+  String get editRouteTitle;
+
+  /// Button to update the route
+  ///
+  /// In en, this message translates to:
+  /// **'Update Stop Pair'**
+  String get updateRouteButton;
+
+  /// Success message when route is updated
+  ///
+  /// In en, this message translates to:
+  /// **'Stop pair updated successfully!'**
+  String get routeUpdatedSuccess;
+
+  /// Bus has arrived at the stop
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived'**
+  String get arrived;
 }
 
 class _AppLocalizationsDelegate

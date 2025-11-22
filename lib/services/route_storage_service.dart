@@ -45,6 +45,17 @@ class RouteStorageService {
     }
   }
 
+  /// Updates a route at the specified index and saves to local storage.
+  ///
+  /// Does nothing if the index is out of bounds.
+  /// The update is immediately persisted.
+  static Future<void> updateRoute(int index, RouteDouble route) async {
+    if (index >= 0 && index < _routes.length) {
+      _routes[index] = route;
+      await saveRoutes();
+    }
+  }
+
   /// Saves the current in-memory routes list to local storage.
   ///
   /// Serializes all routes to JSON and stores them in SharedPreferences.

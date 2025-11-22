@@ -135,5 +135,45 @@
     "noBusesFound": "Seferde araç bulunamadı.",
     "@noBusesFound": {
         "description": "Otobüs olmadığında gösterilen mesaj"
+    },
+    "deleteRoutes": "Durakları Sil",
+    "@deleteRoutes": {
+        "description": "Silme moduna geçmek için buton"
+    },
+    "cancel": "İptal",
+    "@cancel": {
+        "description": "İptal butonu metni"
+    },
+    "confirmDelete": "Silmeyi Onayla",
+    "@confirmDelete": {
+        "description": "Silme onay diyaloğu başlığı"
+    },
+    "deleteRouteConfirmation": "Durak çiftini sil",
+    "@deleteRouteConfirmation": {
+        "description": "Durak çifti silme onay mesajı"
+    },
+    "delete": "Sil",
+    "@delete": {
+        "description": "Sil butonu metni"
+    },
+    "editRoutes": "Durakları Düzenle",
+    "@editRoutes": {
+        "description": "Düzenleme moduna geçmek için buton"
+    },
+    "editRouteTitle": "Durak Çiftini Düzenle",
+    "@editRouteTitle": {
+        "description": "Durak çifti düzenleme sayfası başlığı"
+    },
+    "updateRouteButton": "Durak Çiftini Güncelle",
+    "@updateRouteButton": {
+        "description": "Durak çiftini güncellemek için buton"
+    },
+    "routeUpdatedSuccess": "Durak çifti başarıyla güncellendi!",
+    "@routeUpdatedSuccess": {
+        "description": "Durak çifti güncellendiğinde başarı mesajı"
+    },
+    "arrived": "Geldi",
+    "@arrived": {
+        "description": "Otobüs durağa geldi"
     }
 }

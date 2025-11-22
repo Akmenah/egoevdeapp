@@ -7,7 +7,7 @@ library;
 /// Represents real-time information about a specific bus.
 class OtobusInfo {
   /// Bus line number (e.g., "590")
-  final String hatNo;
+  final String? hatNo;
 
   /// Bus line name/description (e.g., "Yaşamkent - Kızılay")
   final String hatAdi;
@@ -32,9 +32,9 @@ class OtobusInfo {
 
   /// Creates a new OtobusInfo instance.
   ///
-  /// All fields except [durakAdi] are required.
+  /// All fields except [durakAdi] and [hatNo] are required.
   OtobusInfo({
-    required this.hatNo,
+    this.hatNo,
     required this.hatAdi,
     this.durakAdi,
     required this.tahminVarisSuresi,

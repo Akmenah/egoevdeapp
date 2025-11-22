@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
 import '/widgets/otobus_info_widget.dart';
+import '../widgets/route_buttons_widget.dart';
 import '../services/route_storage_service.dart';
-import 'add_route_double.dart';
 
 /// Home page widget displaying bus tracking information.
 class HomePage extends StatefulWidget {
@@ -136,7 +136,50 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               // Route selection buttons
-              _routeButtons(),
+              RouteButtonsWidget(
+                isLoading: isLoading,
+                onLoadingChanged: (loading) {
+                  setState(() {
+                    isLoading = loading;
+                  });
+                },
+                onRouteSelected: (first, second) {
+                  if (first == null || second == null) {
+                    setState(() {
+                      error = 'Failed to load route';
+                    });
+                    return;
+                  }
+
+                  setState(() {
+                    error = null;
+                  });
+
+                  // Stop timers of previous duraks if any
+                  firstDurak?.disposeTimer();
+                  secondDurak?.disposeTimer();
+
+                  setState(() {
+                    firstDurak = first;
+                    secondDurak = second;
+                  });
+
+                  // Start auto-refresh timers for the selected duraks
+                  firstDurak?.startAutoRefresh(
+                    onDataRefreshed: () {
+                      if (mounted) setState(() {});
+                    },
+                  );
+                  secondDurak?.startAutoRefresh(
+                    onDataRefreshed: () {
+                      if (mounted) setState(() {});
+                    },
+                  );
+                },
+                onAddRoute: () {
+                  if (mounted) setState(() {});
+                },
+              ),
               // Display bus info or loading/error state
               _otobusTable(),
               // Last fetch time indicator
@@ -174,103 +217,6 @@ class _HomePageState extends State<HomePage> {
           '${l10n.lastUpdate}${_getTimeSinceLastFetch(context)}',
           style: const TextStyle(color: Colors.red, fontSize: detailFontSize),
         ),
-      ),
-    );
-  }
-
-  SizedBox _routeButtons() {
-    final routeInfos = RouteStorageService.getRoutes();
-    return SizedBox(
-      height: 100,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.fromLTRB(8.0, 36.0, 8.0, 8),
-        itemCount: routeInfos.length + 1, // +1 for the add button
-        itemBuilder: (context, index) {
-          // Last item is the add button
-          if (index == 0) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ElevatedButton(
-                onPressed: isLoading
-                    ? null
-                    : () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AddRouteDoublePage(),
-                          ),
-                        );
-                        // Refresh UI after returning from add route page
-                        if (mounted) setState(() {});
-                      },
-                child: isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Text(AppLocalizations.of(context)!.addRouteButton),
-              ),
-            );
-          }
-
-          // Route buttons
-          final routeDouble = routeInfos[index - 1];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: ElevatedButton(
-              onPressed: isLoading
-                  ? null
-                  : () async {
-                      setState(() {
-                        isLoading = true;
-                        error = null;
-                      });
-                      try {
-                        // Stop timers of previous duraks if any
-                        firstDurak?.disposeTimer();
-                        secondDurak?.disposeTimer();
-
-                        // Fetch buses for the selected route double
-                        await routeDouble.fetchBuses();
-
-                        setState(() {
-                          firstDurak = routeDouble.first;
-                          secondDurak = routeDouble.second;
-                          isLoading = false;
-                        });
-
-                        // Start auto-refresh timers for the selected duraks
-                        firstDurak?.startAutoRefresh(
-                          onDataRefreshed: () {
-                            if (mounted) setState(() {});
-                          },
-                        );
-                        secondDurak?.startAutoRefresh(
-                          onDataRefreshed: () {
-                            if (mounted) setState(() {});
-                          },
-                        );
-                      } catch (e) {
-                        setState(() {
-                          error = e.toString();
-                          isLoading = false;
-                        });
-                      }
-                    },
-              child: isLoading
-                  ? const SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Text(
-                      '${routeDouble.preferredName} ${AppLocalizations.of(context)!.showStopInfo}',
-                    ),
-            ),
-          );
-        },
       ),
     );
   }

@@ -75,6 +75,15 @@ class OtobusInfoWidget extends StatelessWidget {
 
   const OtobusInfoWidget({super.key, this.firstDurak, this.secondDurak});
 
+  /// Helper to localize arrival time string
+  String _localizeArrivalTime(BuildContext context, String tahminVarisSuresi) {
+    final l10n = AppLocalizations.of(context)!;
+    if (tahminVarisSuresi.toLowerCase() == 'geldi') {
+      return l10n.arrived;
+    }
+    return tahminVarisSuresi;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -276,7 +285,10 @@ class OtobusInfoWidget extends StatelessWidget {
                             ),
                           if (bus.tahminVarisSuresi.isNotEmpty)
                             Text(
-                              bus.tahminVarisSuresi,
+                              _localizeArrivalTime(
+                                context,
+                                bus.tahminVarisSuresi,
+                              ),
                               style: const TextStyle(
                                 fontSize: dataFontSize,
                                 fontWeight: FontWeight.bold,

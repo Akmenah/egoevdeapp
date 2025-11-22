@@ -1,7 +1,7 @@
-/// Page for adding a new route pair to the saved routes.
+/// Page for editing an existing route pair.
 ///
-/// Allows users to input details for two bus stops (typically opposite
-/// directions) and save them as a named route for easy access.
+/// Allows users to modify details for two bus stops (typically opposite
+/// directions) and update them in the saved routes.
 library;
 
 import 'package:flutter/material.dart';
@@ -10,16 +10,26 @@ import '../models/durak_info.dart';
 import '../models/route_double.dart';
 import '../services/route_storage_service.dart';
 
-/// Form page for adding a new route pair.
-class AddRouteDoublePage extends StatefulWidget {
-  const AddRouteDoublePage({super.key});
+/// Form page for editing an existing route pair.
+class EditRouteDoublePage extends StatefulWidget {
+  const EditRouteDoublePage({
+    super.key,
+    required this.routeIndex,
+    required this.existingRoute,
+  });
+
+  /// Index of the route in the saved routes list
+  final int routeIndex;
+
+  /// The existing route to edit
+  final RouteDouble existingRoute;
 
   @override
-  State<AddRouteDoublePage> createState() => _AddRouteDoublePageState();
+  State<EditRouteDoublePage> createState() => _EditRouteDoublePageState();
 }
 
-/// State for the AddRouteDoublePage widget.
-class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
+/// State for the EditRouteDoublePage widget.
+class _EditRouteDoublePageState extends State<EditRouteDoublePage> {
   /// Form key for validation
   final _formKey = GlobalKey<FormState>();
 
@@ -47,6 +57,19 @@ class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
   final _preferredNameController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    // Pre-fill form with existing route data
+    _preferredNameController.text = widget.existingRoute.preferredName;
+    _firstDurakNoController.text = widget.existingRoute.first.durakNo;
+    _firstHatNoController.text = widget.existingRoute.first.hatNo ?? '';
+    _firstDurakAdiController.text = widget.existingRoute.first.durakAdi ?? '';
+    _secondDurakNoController.text = widget.existingRoute.second.durakNo;
+    _secondHatNoController.text = widget.existingRoute.second.hatNo ?? '';
+    _secondDurakAdiController.text = widget.existingRoute.second.durakAdi ?? '';
+  }
+
+  @override
   void dispose() {
     // Dispose all text controllers to prevent memory leaks
     _firstDurakNoController.dispose();
@@ -59,13 +82,13 @@ class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
     super.dispose();
   }
 
-  /// Validates the form and saves the new route to storage.
+  /// Validates the form and updates the existing route in storage.
   ///
-  /// Creates a RouteDouble from the form data, adds it to storage,
+  /// Updates the RouteDouble at the specified index, saves to storage,
   /// shows a success message, and returns to the previous screen.
-  void _saveRoute() async {
+  void _updateRoute() async {
     if (_formKey.currentState!.validate()) {
-      final newRoute = RouteDouble(
+      final updatedRoute = RouteDouble(
         first: DurakInfo(
           durakNo: _firstDurakNoController.text.trim(),
           hatNo: _firstHatNoController.text.trim().isEmpty
@@ -83,14 +106,14 @@ class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
         preferredName: _preferredNameController.text.trim(),
       );
 
-      await RouteStorageService.addRoute(newRoute);
+      await RouteStorageService.updateRoute(widget.routeIndex, updatedRoute);
 
       if (!mounted) return;
 
       final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.routeAddedSuccess)));
+      ).showSnackBar(SnackBar(content: Text(l10n.routeUpdatedSuccess)));
 
       Navigator.pop(context, true);
     }
@@ -103,7 +126,7 @@ class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.addNewRouteTitle),
+        title: Text(l10n.editRouteTitle),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SafeArea(
@@ -202,18 +225,18 @@ class _AddRouteDoublePageState extends State<AddRouteDoublePage> {
                 ),
                 const SizedBox(height: 32),
 
-                // Save Button
+                // Update Button
                 Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: isPortrait ? 24 : 180.0,
                   ),
                   child: ElevatedButton(
-                    onPressed: _saveRoute,
+                    onPressed: _updateRoute,
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                     child: Text(
-                      l10n.saveRouteButton,
+                      l10n.updateRouteButton,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ),

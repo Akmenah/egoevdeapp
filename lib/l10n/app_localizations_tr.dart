@@ -109,4 +109,34 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noBusesFound => 'Seferde araç bulunamadı.';
+
+  @override
+  String get deleteRoutes => 'Durakları Sil';
+
+  @override
+  String get cancel => 'İptal';
+
+  @override
+  String get confirmDelete => 'Silmeyi Onayla';
+
+  @override
+  String get deleteRouteConfirmation => 'Durak çiftini sil';
+
+  @override
+  String get delete => 'Sil';
+
+  @override
+  String get editRoutes => 'Durakları Düzenle';
+
+  @override
+  String get editRouteTitle => 'Durak Çiftini Düzenle';
+
+  @override
+  String get updateRouteButton => 'Durak Çiftini Güncelle';
+
+  @override
+  String get routeUpdatedSuccess => 'Durak çifti başarıyla güncellendi!';
+
+  @override
+  String get arrived => 'Geldi';
 }

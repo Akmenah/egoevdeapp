@@ -109,4 +109,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noBusesFound => 'No buses found on route.';
+
+  @override
+  String get deleteRoutes => 'Delete Routes';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get confirmDelete => 'Confirm Delete';
+
+  @override
+  String get deleteRouteConfirmation => 'Delete route';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get editRoutes => 'Edit Routes';
+
+  @override
+  String get editRouteTitle => 'Edit Stop Pair';
+
+  @override
+  String get updateRouteButton => 'Update Stop Pair';
+
+  @override
+  String get routeUpdatedSuccess => 'Stop pair updated successfully!';
+
+  @override
+  String get arrived => 'Arrived';
 }
