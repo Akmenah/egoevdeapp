@@ -44,7 +44,15 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
   /// Whether edit mode is active
   bool _isEditMode = false;
 
-  /// Delete a route after confirmation
+  /// Deletes a route after user confirmation.
+  ///
+  /// Shows a confirmation dialog before deleting. If confirmed, removes the route
+  /// at the specified [index] from storage. Automatically exits delete mode after
+  /// the operation completes or if the user cancels.
+  ///
+  /// Parameters:
+  /// - [context]: Build context for showing the dialog
+  /// - [index]: Index of the route to delete in the routes list
   Future<void> _deleteRoute(BuildContext context, int index) async {
     final l10n = AppLocalizations.of(context)!;
     final routeInfos = RouteStorageService.getRoutes();
@@ -88,7 +96,15 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
     }
   }
 
-  /// Edit a route
+  /// Opens the edit page for a route.
+  ///
+  /// Navigates to [EditRouteDoublePage] with the selected route. Automatically
+  /// exits edit mode when returning from the edit page. If the route was successfully
+  /// updated (result == true), refreshes the parent widget.
+  ///
+  /// Parameters:
+  /// - [context]: Build context for navigation
+  /// - [index]: Index of the route to edit in the routes list
   Future<void> _editRoute(BuildContext context, int index) async {
     final routeInfos = RouteStorageService.getRoutes();
     final routeToEdit = routeInfos[index];
@@ -115,6 +131,12 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
   @override
   Widget build(BuildContext context) {
     final routeInfos = RouteStorageService.getRoutes();
+    // Sort routes alphabetically by name (case-insensitive)
+    routeInfos.sort(
+      (a, b) => a.preferredName.toLowerCase().compareTo(
+        b.preferredName.toLowerCase(),
+      ),
+    );
     return SizedBox(
       height: 100,
       child: ListView.builder(
@@ -138,18 +160,13 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                         );
                         widget.onAddRoute();
                       },
-                child: widget.isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Icon(
-                        Icons.add,
-                        color: (_isDeleteMode || _isEditMode)
-                            ? Colors.grey
-                            : Colors.green,
-                      ),
+                // Icon color: grey when disabled (delete/edit mode active), green otherwise
+                child: Icon(
+                  Icons.add,
+                  color: (_isDeleteMode || _isEditMode)
+                      ? Colors.grey
+                      : Colors.green,
+                ),
               ),
             );
           }
@@ -162,13 +179,16 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                 onPressed: widget.isLoading || _isDeleteMode
                     ? null
                     : () {
+                        // Toggle edit mode on/off
                         setState(() {
                           _isEditMode = !_isEditMode;
                         });
                       },
                 style: ElevatedButton.styleFrom(
+                  // Blue background when edit mode is active
                   backgroundColor: _isEditMode ? Colors.blue : null,
                 ),
+                // Show close icon when active, edit icon with conditional color otherwise
                 child: _isEditMode
                     ? Icon(Icons.close, color: Colors.white)
                     : Icon(
@@ -187,13 +207,16 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                 onPressed: widget.isLoading || _isEditMode
                     ? null
                     : () {
+                        // Toggle delete mode on/off
                         setState(() {
                           _isDeleteMode = !_isDeleteMode;
                         });
                       },
                 style: ElevatedButton.styleFrom(
+                  // Red background when delete mode is active
                   backgroundColor: _isDeleteMode ? Colors.red : null,
                 ),
+                // Show close icon when active, delete icon with conditional color otherwise
                 child: _isDeleteMode
                     ? Icon(Icons.close, color: Colors.white)
                     : Icon(
@@ -204,7 +227,8 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
             );
           }
 
-          // Route buttons
+          // Route buttons - display saved route pairs
+          // Index offset by 3 to account for add, edit, and delete buttons
           final routeDouble = routeInfos[index - 3];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -212,11 +236,15 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
               onPressed: widget.isLoading
                   ? null
                   : () async {
+                      // Behavior changes based on active mode:
                       if (_isDeleteMode) {
+                        // Delete mode: clicking deletes the route
                         await _deleteRoute(context, index - 3);
                       } else if (_isEditMode) {
+                        // Edit mode: clicking opens edit page
                         await _editRoute(context, index - 3);
                       } else {
+                        // Normal mode: clicking loads and displays route data
                         widget.onLoadingChanged(true);
                         try {
                           // Fetch buses for the selected route double
@@ -226,6 +254,7 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                             routeDouble.second,
                           );
                         } catch (e) {
+                          // On error, pass null to indicate failure
                           widget.onRouteSelected(null, null);
                         } finally {
                           widget.onLoadingChanged(false);
@@ -233,6 +262,7 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                       }
                     },
               style: ElevatedButton.styleFrom(
+                // Background color changes based on active mode
                 backgroundColor: _isDeleteMode
                     ? Colors.red.shade100
                     : _isEditMode

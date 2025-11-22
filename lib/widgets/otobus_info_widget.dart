@@ -158,20 +158,7 @@ class OtobusInfoWidget extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 16),
-              Container(
-                width: 140,
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  AppLocalizations.of(context)!.lineAbbr,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: headerFontSize,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              const SizedBox(width: 16),
+
               Expanded(
                 child: Text(
                   AppLocalizations.of(context)!.stopNameLabel,
@@ -194,20 +181,7 @@ class OtobusInfoWidget extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 16),
-              Container(
-                width: 140,
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  hatNo ?? '',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: headerFontSize,
-                    color: Colors.indigo,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              const SizedBox(width: 16),
+
               Expanded(
                 child: Text(
                   durakAdi ?? '',
@@ -264,12 +238,31 @@ class OtobusInfoWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(
-                      Icons.directions_bus,
-                      size: 48,
-                      color: Colors.blue,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 140,
+                          alignment: Alignment.center,
+                          child: Text(
+                            bus.hatNo ?? '',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: headerFontSize,
+                              color: Colors.indigo,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        const Icon(
+                          Icons.directions_bus,
+                          size: 48,
+                          color: Colors.blue,
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
