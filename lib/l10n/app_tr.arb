@@ -1,0 +1,139 @@
+{
+    "@@locale": "tr",
+    "appTitle": "EgoEvde",
+    "@appTitle": {
+        "description": "Uygulama başlığı"
+    },
+    "homePage": "Ana Sayfa",
+    "@homePage": {
+        "description": "Ana sayfa başlığı"
+    },
+    "addRouteButton": "Durak Çifti Ekle +",
+    "@addRouteButton": {
+        "description": "Yeni rota eklemek için buton"
+    },
+    "errorPrefix": "Hata: ",
+    "@errorPrefix": {
+        "description": "Hata mesajları için önek"
+    },
+    "lastUpdate": "Son güncelleme: ",
+    "@lastUpdate": {
+        "description": "Son güncelleme zamanı etiketi"
+    },
+    "secondsAgo": "saniye önce",
+    "@secondsAgo": {
+        "description": "Saniye zaman birimi"
+    },
+    "minutesAgo": "dakika önce",
+    "@minutesAgo": {
+        "description": "Dakika zaman birimi"
+    },
+    "hoursAgo": "saat önce",
+    "@hoursAgo": {
+        "description": "Saat zaman birimi"
+    },
+    "showStopInfo": "Durak Bilgilerini Göster",
+    "@showStopInfo": {
+        "description": "Durak bilgilerini göstermek için buton"
+    },
+    "addNewRouteTitle": "Yeni Durak Çifti Ekle",
+    "@addNewRouteTitle": {
+        "description": "Rota ekleme sayfası başlığı"
+    },
+    "routeNameLabel": "Durak Çifti Adı",
+    "@routeNameLabel": {
+        "description": "Rota adı alanı etiketi"
+    },
+    "routeNameHint": "Örn: Evden İşe",
+    "@routeNameHint": {
+        "description": "Rota adı alanı ipucu"
+    },
+    "routeNameRequired": "Durak çifti adı gerekli",
+    "@routeNameRequired": {
+        "description": "Rota adı doğrulama mesajı"
+    },
+    "firstStop": "Birinci Durak",
+    "@firstStop": {
+        "description": "Birinci durak bölümü etiketi"
+    },
+    "secondStop": "İkinci Durak",
+    "@secondStop": {
+        "description": "İkinci durak bölümü etiketi"
+    },
+    "stopNumberLabel": "Durak No",
+    "@stopNumberLabel": {
+        "description": "Durak numarası alanı etiketi"
+    },
+    "stopNumberHint": "Örn: 12345",
+    "@stopNumberHint": {
+        "description": "Durak numarası alanı ipucu"
+    },
+    "stopNumberRequired": "Durak numarası gerekli",
+    "@stopNumberRequired": {
+        "description": "Durak numarası doğrulama mesajı"
+    },
+    "lineNumberLabel": "Hat No",
+    "@lineNumberLabel": {
+        "description": "Hat numarası alanı etiketi"
+    },
+    "lineNumberHint": "Örn: 123",
+    "@lineNumberHint": {
+        "description": "Hat numarası alanı ipucu"
+    },
+    "lineNumberRequired": "Hat numarası gerekli",
+    "@lineNumberRequired": {
+        "description": "Hat numarası doğrulama mesajı"
+    },
+    "stopNameLabel": "Durak Adı",
+    "@stopNameLabel": {
+        "description": "Durak adı alanı etiketi"
+    },
+    "stopNameHint": "Örn: Ev/İş Yönü",
+    "@stopNameHint": {
+        "description": "Durak adı alanı ipucu"
+    },
+    "saveRouteButton": "Durak Çiftini Kaydet",
+    "@saveRouteButton": {
+        "description": "Rotayı kaydetmek için buton"
+    },
+    "routeAddedSuccess": "Durak çifti başarıyla eklendi!",
+    "@routeAddedSuccess": {
+        "description": "Rota eklendiğinde başarı mesajı"
+    },
+    "direction1": "1. Yön",
+    "@direction1": {
+        "description": "Birinci yön etiketi"
+    },
+    "direction2": "2. Yön",
+    "@direction2": {
+        "description": "İkinci yön etiketi"
+    },
+    "lineAbbr": "Hat",
+    "@lineAbbr": {
+        "description": "Hat kısaltması"
+    },
+    "estimatedArrival": "Tahmini Varış",
+    "@estimatedArrival": {
+        "description": "Tahmini varış zamanı etiketi"
+    },
+    "vehicleNumber": "Araç No",
+    "@vehicleNumber": {
+        "description": "Araç numarası etiketi"
+    },
+    "plate": "Plaka",
+    "@plate": {
+        "description": "Plaka etiketi"
+    },
+    "stopOrder": "Durak Sırası",
+    "@stopOrder": {
+        "description": "Rota içinde durak sırası etiketi"
+    },
+    "features": "Özellikler",
+    "@features": {
+        "description": "Otobüs özellikleri etiketi"
+    },
+    "noBusesFound": "Seferde araç bulunamadı.",
+    "@noBusesFound": {
+        "description": "Otobüs olmadığında gösterilen mesaj"
+    }
+}

@@ -1,0 +1,139 @@
+{
+    "@@locale": "en",
+    "appTitle": "EgoEvde",
+    "@appTitle": {
+        "description": "Application title"
+    },
+    "homePage": "Home",
+    "@homePage": {
+        "description": "Home page title"
+    },
+    "addRouteButton": "Add Stop Pair +",
+    "@addRouteButton": {
+        "description": "Button to add a new route"
+    },
+    "errorPrefix": "Error: ",
+    "@errorPrefix": {
+        "description": "Prefix for error messages"
+    },
+    "lastUpdate": "Last update: ",
+    "@lastUpdate": {
+        "description": "Label for last update time"
+    },
+    "secondsAgo": "seconds ago",
+    "@secondsAgo": {
+        "description": "Time unit for seconds"
+    },
+    "minutesAgo": "minutes ago",
+    "@minutesAgo": {
+        "description": "Time unit for minutes"
+    },
+    "hoursAgo": "hours ago",
+    "@hoursAgo": {
+        "description": "Time unit for hours"
+    },
+    "showStopInfo": "Show Stop Info",
+    "@showStopInfo": {
+        "description": "Button text to show stop information"
+    },
+    "addNewRouteTitle": "Add New Stop Pair",
+    "@addNewRouteTitle": {
+        "description": "Title for add route page"
+    },
+    "routeNameLabel": "Route Pair Name",
+    "@routeNameLabel": {
+        "description": "Label for route name field"
+    },
+    "routeNameHint": "E.g: Home to Work",
+    "@routeNameHint": {
+        "description": "Hint for route name field"
+    },
+    "routeNameRequired": "Route pair name is required",
+    "@routeNameRequired": {
+        "description": "Validation message for route name"
+    },
+    "firstStop": "First Stop",
+    "@firstStop": {
+        "description": "Label for first stop section"
+    },
+    "secondStop": "Second Stop",
+    "@secondStop": {
+        "description": "Label for second stop section"
+    },
+    "stopNumberLabel": "Stop No",
+    "@stopNumberLabel": {
+        "description": "Label for stop number field"
+    },
+    "stopNumberHint": "E.g: 12345",
+    "@stopNumberHint": {
+        "description": "Hint for stop number field"
+    },
+    "stopNumberRequired": "Stop number is required",
+    "@stopNumberRequired": {
+        "description": "Validation message for stop number"
+    },
+    "lineNumberLabel": "Line No",
+    "@lineNumberLabel": {
+        "description": "Label for line number field"
+    },
+    "lineNumberHint": "E.g: 123",
+    "@lineNumberHint": {
+        "description": "Hint for line number field"
+    },
+    "lineNumberRequired": "Line number is required",
+    "@lineNumberRequired": {
+        "description": "Validation message for line number"
+    },
+    "stopNameLabel": "Stop Name",
+    "@stopNameLabel": {
+        "description": "Label for stop name field"
+    },
+    "stopNameHint": "E.g: Home/Work Direction",
+    "@stopNameHint": {
+        "description": "Hint for stop name field"
+    },
+    "saveRouteButton": "Save Stop Pair",
+    "@saveRouteButton": {
+        "description": "Button to save the route"
+    },
+    "routeAddedSuccess": "Stop pair added successfully!",
+    "@routeAddedSuccess": {
+        "description": "Success message when route is added"
+    },
+    "direction1": "Direction 1",
+    "@direction1": {
+        "description": "Label for first direction"
+    },
+    "direction2": "Direction 2",
+    "@direction2": {
+        "description": "Label for second direction"
+    },
+    "lineAbbr": "Line",
+    "@lineAbbr": {
+        "description": "Abbreviation for line"
+    },
+    "estimatedArrival": "Estimated Arrival",
+    "@estimatedArrival": {
+        "description": "Label for estimated arrival time"
+    },
+    "vehicleNumber": "Vehicle No",
+    "@vehicleNumber": {
+        "description": "Label for vehicle number"
+    },
+    "plate": "Plate",
+    "@plate": {
+        "description": "Label for license plate"
+    },
+    "stopOrder": "Stop Order",
+    "@stopOrder": {
+        "description": "Label for stop order in route"
+    },
+    "features": "Features",
+    "@features": {
+        "description": "Label for bus features"
+    },
+    "noBusesFound": "No buses found on route.",
+    "@noBusesFound": {
+        "description": "Message when no buses are available"
+    }
+}
