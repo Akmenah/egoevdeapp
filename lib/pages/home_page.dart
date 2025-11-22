@@ -9,6 +9,7 @@ import 'package:egoevdeapp/models/durak_info.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
+import '../models/app_theme.dart';
 import '/widgets/otobus_info_widget.dart';
 import '../widgets/route_buttons_widget.dart';
 import '../services/route_storage_service.dart';
@@ -200,7 +201,7 @@ class _HomePageState extends State<HomePage> {
           ? Center(
               child: Text(
                 '${AppLocalizations.of(context)!.errorPrefix}$error',
-                style: const TextStyle(color: Colors.red),
+                style: TextStyle(color: AppTheme.colors(context).error),
               ),
             )
           : OtobusInfoWidget(firstDurak: firstDurak, secondDurak: secondDurak),
@@ -215,7 +216,10 @@ class _HomePageState extends State<HomePage> {
         alignment: Alignment.bottomRight,
         child: Text(
           '${l10n.lastUpdate}${_getTimeSinceLastFetch(context)}',
-          style: const TextStyle(color: Colors.red, fontSize: detailFontSize),
+          style: TextStyle(
+            color: AppTheme.colors(context).error,
+            fontSize: detailFontSize,
+          ),
         ),
       ),
     );

@@ -139,4 +139,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arrived => 'Arrived';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get languageSubtitle => 'Choose your preferred language';
+
+  @override
+  String get themeMode => 'Theme';
+
+  @override
+  String get themeModeSubtitle => 'Choose light, dark, or system theme';
+
+  @override
+  String get lightMode => 'Light';
+
+  @override
+  String get darkMode => 'Dark';
+
+  @override
+  String get systemMode => 'System';
+
+  @override
+  String get deleteAllData => 'Delete All Data';
+
+  @override
+  String get deleteAllDataSubtitle => 'Delete all saved route pairs';
+
+  @override
+  String get confirmDeleteAll => 'Confirm Delete All';
+
+  @override
+  String get deleteAllDataConfirmation =>
+      'Are you sure you want to delete all saved route pairs? This action cannot be undone.';
+
+  @override
+  String get allDataDeleted => 'All data deleted successfully';
+
+  @override
+  String get languageChangeNotImplemented =>
+      'Language change requires app restart (not implemented yet)';
+
+  @override
+  String get themeModeChangeNotImplemented =>
+      'Theme mode change requires app restart (not implemented yet)';
 }

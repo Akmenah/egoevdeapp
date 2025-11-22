@@ -175,5 +175,65 @@
     "arrived": "Geldi",
     "@arrived": {
         "description": "Otobüs durağa geldi"
+    },
+    "settings": "Ayarlar",
+    "@settings": {
+        "description": "Ayarlar sayfası başlığı"
+    },
+    "language": "Dil",
+    "@language": {
+        "description": "Dil ayarı etiketi"
+    },
+    "languageSubtitle": "Tercih ettiğiniz dili seçin",
+    "@languageSubtitle": {
+        "description": "Dil ayarı alt başlık"
+    },
+    "themeMode": "Tema",
+    "@themeMode": {
+        "description": "Tema modu ayarı etiketi"
+    },
+    "themeModeSubtitle": "Açık, koyu veya sistem teması seçin",
+    "@themeModeSubtitle": {
+        "description": "Tema modu ayarı alt başlık"
+    },
+    "lightMode": "Açık",
+    "@lightMode": {
+        "description": "Açık tema modu"
+    },
+    "darkMode": "Koyu",
+    "@darkMode": {
+        "description": "Koyu tema modu"
+    },
+    "systemMode": "Sistem",
+    "@systemMode": {
+        "description": "Sistem tema modu"
+    },
+    "deleteAllData": "Tüm Verileri Sil",
+    "@deleteAllData": {
+        "description": "Tüm verileri sil seçeneği"
+    },
+    "deleteAllDataSubtitle": "Kaydedilmiş tüm durak çiftlerini sil",
+    "@deleteAllDataSubtitle": {
+        "description": "Tüm verileri sil alt başlık"
+    },
+    "confirmDeleteAll": "Tüm Verileri Silme Onayı",
+    "@confirmDeleteAll": {
+        "description": "Tüm verileri silme onay iletişim kutusu başlığı"
+    },
+    "deleteAllDataConfirmation": "Kaydedilmiş tüm durak çiftlerini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "@deleteAllDataConfirmation": {
+        "description": "Tüm verileri silme onay mesajı"
+    },
+    "allDataDeleted": "Tüm veriler başarıyla silindi",
+    "@allDataDeleted": {
+        "description": "Tüm veriler silindikten sonra başarı mesajı"
+    },
+    "languageChangeNotImplemented": "Dil değişikliği uygulama yeniden başlatma gerektirir (henüz uygulanmadı)",
+    "@languageChangeNotImplemented": {
+        "description": "Dil değişikliği uygulanmadığında mesaj"
+    },
+    "themeModeChangeNotImplemented": "Tema modu değişikliği uygulama yeniden başlatma gerektirir (henüz uygulanmadı)",
+    "@themeModeChangeNotImplemented": {
+        "description": "Tema modu değişikliği uygulanmadığında mesaj"
     }
 }

@@ -175,5 +175,65 @@
     "arrived": "Arrived",
     "@arrived": {
         "description": "Bus has arrived at the stop"
+    },
+    "settings": "Settings",
+    "@settings": {
+        "description": "Settings page title"
+    },
+    "language": "Language",
+    "@language": {
+        "description": "Language setting label"
+    },
+    "languageSubtitle": "Choose your preferred language",
+    "@languageSubtitle": {
+        "description": "Language setting subtitle"
+    },
+    "themeMode": "Theme",
+    "@themeMode": {
+        "description": "Theme mode setting label"
+    },
+    "themeModeSubtitle": "Choose light, dark, or system theme",
+    "@themeModeSubtitle": {
+        "description": "Theme mode setting subtitle"
+    },
+    "lightMode": "Light",
+    "@lightMode": {
+        "description": "Light theme mode"
+    },
+    "darkMode": "Dark",
+    "@darkMode": {
+        "description": "Dark theme mode"
+    },
+    "systemMode": "System",
+    "@systemMode": {
+        "description": "System theme mode"
+    },
+    "deleteAllData": "Delete All Data",
+    "@deleteAllData": {
+        "description": "Delete all data option"
+    },
+    "deleteAllDataSubtitle": "Delete all saved route pairs",
+    "@deleteAllDataSubtitle": {
+        "description": "Delete all data subtitle"
+    },
+    "confirmDeleteAll": "Confirm Delete All",
+    "@confirmDeleteAll": {
+        "description": "Confirm delete all dialog title"
+    },
+    "deleteAllDataConfirmation": "Are you sure you want to delete all saved route pairs? This action cannot be undone.",
+    "@deleteAllDataConfirmation": {
+        "description": "Confirm delete all data message"
+    },
+    "allDataDeleted": "All data deleted successfully",
+    "@allDataDeleted": {
+        "description": "Success message after deleting all data"
+    },
+    "languageChangeNotImplemented": "Language change requires app restart (not implemented yet)",
+    "@languageChangeNotImplemented": {
+        "description": "Message when language change is not implemented"
+    },
+    "themeModeChangeNotImplemented": "Theme mode change requires app restart (not implemented yet)",
+    "@themeModeChangeNotImplemented": {
+        "description": "Message when theme mode change is not implemented"
     }
 }

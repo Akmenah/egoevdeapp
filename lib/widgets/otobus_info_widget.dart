@@ -10,6 +10,7 @@ import 'package:flutter/widget_previews.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../l10n/app_localizations.dart';
 import '../models/otobus_info.dart';
+import '../models/app_theme.dart';
 
 const double headerFontSize = 42;
 const double dataFontSize = 96;
@@ -153,44 +154,36 @@ class OtobusInfoWidget extends StatelessWidget {
       children: [
         // Header row with Hat No and Hat Adı
         Container(
-          color: const Color(0xFF7BC0E5),
+          color: AppTheme.colors(context).stopHeaderBackground,
           padding: const EdgeInsets.all(8),
-          child: Row(
-            children: [
-              const SizedBox(width: 16),
-
-              Expanded(
-                child: Text(
-                  AppLocalizations.of(context)!.stopNameLabel,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: headerFontSize,
-                  ),
-                ),
+          child: Center(
+            child: Text(
+              AppLocalizations.of(context)!.stopNameLabel,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppTheme.colors(context).stopHeaderText,
+                fontSize: headerFontSize,
               ),
-            ],
+            ),
           ),
         ),
         // Data row with actual values
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade300),
+            border: Border.all(color: AppTheme.colors(context).cardBorder),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 16),
-
               Expanded(
                 child: Text(
                   durakAdi ?? '',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: headerFontSize,
-                    color: Colors.indigo,
+                    color: AppTheme.colors(context).stopNameText,
                   ),
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
@@ -230,8 +223,7 @@ class OtobusInfoWidget extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              border: Border.all(color: Colors.grey.shade300),
+              border: Border.all(color: AppTheme.colors(context).cardBorder),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,19 +238,19 @@ class OtobusInfoWidget extends StatelessWidget {
                           alignment: Alignment.center,
                           child: Text(
                             bus.hatNo ?? '',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: headerFontSize,
-                              color: Colors.indigo,
+                              color: AppTheme.colors(context).stopNameText,
                             ),
                             textAlign: TextAlign.left,
                           ),
                         ),
                         const SizedBox(width: 16),
-                        const Icon(
+                        Icon(
                           Icons.directions_bus,
                           size: 48,
-                          color: Colors.blue,
+                          color: AppTheme.colors(context).busIcon,
                         ),
                       ],
                     ),
@@ -270,10 +262,10 @@ class OtobusInfoWidget extends StatelessWidget {
                           if (bus.tahminVarisSuresi.isNotEmpty)
                             Text(
                               AppLocalizations.of(context)!.estimatedArrival,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: headerFontSize,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFB80000),
+                                color: AppTheme.colors(context).arrivalTimeText,
                               ),
                             ),
                           if (bus.tahminVarisSuresi.isNotEmpty)
@@ -282,10 +274,10 @@ class OtobusInfoWidget extends StatelessWidget {
                                 context,
                                 bus.tahminVarisSuresi,
                               ),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: dataFontSize,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFB80000),
+                                color: AppTheme.colors(context).arrivalTimeText,
                               ),
                             ),
                           const SizedBox(height: 4),
@@ -323,5 +315,9 @@ class OtobusInfoWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool isDarkMode(BuildContext context) {
+    return MediaQuery.of(context).platformBrightness == Brightness.dark;
   }
 }

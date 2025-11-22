@@ -139,4 +139,52 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get arrived => 'Geldi';
+
+  @override
+  String get settings => 'Ayarlar';
+
+  @override
+  String get language => 'Dil';
+
+  @override
+  String get languageSubtitle => 'Tercih ettiğiniz dili seçin';
+
+  @override
+  String get themeMode => 'Tema';
+
+  @override
+  String get themeModeSubtitle => 'Açık, koyu veya sistem teması seçin';
+
+  @override
+  String get lightMode => 'Açık';
+
+  @override
+  String get darkMode => 'Koyu';
+
+  @override
+  String get systemMode => 'Sistem';
+
+  @override
+  String get deleteAllData => 'Tüm Verileri Sil';
+
+  @override
+  String get deleteAllDataSubtitle => 'Kaydedilmiş tüm durak çiftlerini sil';
+
+  @override
+  String get confirmDeleteAll => 'Tüm Verileri Silme Onayı';
+
+  @override
+  String get deleteAllDataConfirmation =>
+      'Kaydedilmiş tüm durak çiftlerini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.';
+
+  @override
+  String get allDataDeleted => 'Tüm veriler başarıyla silindi';
+
+  @override
+  String get languageChangeNotImplemented =>
+      'Dil değişikliği uygulama yeniden başlatma gerektirir (henüz uygulanmadı)';
+
+  @override
+  String get themeModeChangeNotImplemented =>
+      'Tema modu değişikliği uygulama yeniden başlatma gerektirir (henüz uygulanmadı)';
 }

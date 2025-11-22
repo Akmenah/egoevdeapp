@@ -361,6 +361,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Arrived'**
   String get arrived;
+
+  /// Settings page title
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Language setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Language setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your preferred language'**
+  String get languageSubtitle;
+
+  /// Theme mode setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeMode;
+
+  /// Theme mode setting subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Choose light, dark, or system theme'**
+  String get themeModeSubtitle;
+
+  /// Light theme mode
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get lightMode;
+
+  /// Dark theme mode
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get darkMode;
+
+  /// System theme mode
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get systemMode;
+
+  /// Delete all data option
+  ///
+  /// In en, this message translates to:
+  /// **'Delete All Data'**
+  String get deleteAllData;
+
+  /// Delete all data subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all saved route pairs'**
+  String get deleteAllDataSubtitle;
+
+  /// Confirm delete all dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Delete All'**
+  String get confirmDeleteAll;
+
+  /// Confirm delete all data message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete all saved route pairs? This action cannot be undone.'**
+  String get deleteAllDataConfirmation;
+
+  /// Success message after deleting all data
+  ///
+  /// In en, this message translates to:
+  /// **'All data deleted successfully'**
+  String get allDataDeleted;
+
+  /// Message when language change is not implemented
+  ///
+  /// In en, this message translates to:
+  /// **'Language change requires app restart (not implemented yet)'**
+  String get languageChangeNotImplemented;
+
+  /// Message when theme mode change is not implemented
+  ///
+  /// In en, this message translates to:
+  /// **'Theme mode change requires app restart (not implemented yet)'**
+  String get themeModeChangeNotImplemented;
 }
 
 class _AppLocalizationsDelegate

@@ -10,6 +10,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 import 'pages/home_page.dart';
 import 'services/route_storage_service.dart';
+import 'services/preferences_service.dart';
+import 'models/app_theme.dart';
 
 /// Application entry point
 ///
@@ -24,8 +26,52 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  /// Global key to access app state from anywhere
+  static _MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+  ThemeMode _themeMode = ThemeMode.dark;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPreferences();
+  }
+
+  /// Load saved preferences
+  Future<void> _loadPreferences() async {
+    final locale = await PreferencesService.getLocale();
+    final themeMode = await PreferencesService.getThemeMode();
+    setState(() {
+      _locale = locale;
+      _themeMode = themeMode;
+    });
+  }
+
+  /// Change app locale
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+    PreferencesService.setLocale(locale);
+  }
+
+  /// Change app theme mode
+  void setThemeMode(ThemeMode mode) {
+    setState(() {
+      _themeMode = mode;
+    });
+    PreferencesService.setThemeMode(mode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +84,11 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('tr')],
-      theme: darkTheme(),
+      locale: _locale,
+      theme: AppTheme.lightTheme(),
+      darkTheme: AppTheme.darkTheme(),
+      themeMode: _themeMode,
       home: const HomePage(title: "EgoEvde"),
-    );
-  }
-
-  ThemeData darkTheme() {
-    return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.indigo,
-      ).copyWith(brightness: Brightness.dark),
     );
   }
 }

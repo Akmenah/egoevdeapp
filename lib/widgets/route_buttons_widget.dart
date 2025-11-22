@@ -7,9 +7,11 @@ library;
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../models/durak_info.dart';
+import '../models/app_theme.dart';
 import '../services/route_storage_service.dart';
 import '../pages/add_route_double.dart';
 import '../pages/edit_route_double.dart';
+import '../pages/settings_page.dart';
 
 /// Horizontal scrollable list of route selection buttons.
 class RouteButtonsWidget extends StatefulWidget {
@@ -142,10 +144,41 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.fromLTRB(8.0, 36.0, 8.0, 8),
-        itemCount: routeInfos.length + 3, // +3 for add, edit and delete buttons
+        itemCount:
+            routeInfos.length +
+            4, // +4 for settings, add, edit and delete buttons
         itemBuilder: (context, index) {
-          // First item is the add button
+          // First item is the settings button
           if (index == 0) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ElevatedButton(
+                onPressed: widget.isLoading || _isDeleteMode || _isEditMode
+                    ? null
+                    : () async {
+                        final result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingsPage(),
+                          ),
+                        );
+                        // If data was deleted, refresh
+                        if (result == true) {
+                          widget.onAddRoute();
+                        }
+                      },
+                child: Icon(
+                  Icons.settings,
+                  color: (_isDeleteMode || _isEditMode)
+                      ? AppTheme.colors(context).iconDisabled
+                      : AppTheme.colors(context).settingsIcon,
+                ),
+              ),
+            );
+          }
+
+          // Second item is the add button
+          if (index == 1) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ElevatedButton(
@@ -164,15 +197,15 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                 child: Icon(
                   Icons.add,
                   color: (_isDeleteMode || _isEditMode)
-                      ? Colors.grey
-                      : Colors.green,
+                      ? AppTheme.colors(context).iconDisabled
+                      : AppTheme.colors(context).addIcon,
                 ),
               ),
             );
           }
 
-          // Second item is the edit routes button
-          if (index == 1) {
+          // Third item is the edit routes button
+          if (index == 2) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ElevatedButton(
@@ -186,21 +219,28 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                       },
                 style: ElevatedButton.styleFrom(
                   // Blue background when edit mode is active
-                  backgroundColor: _isEditMode ? Colors.blue : null,
+                  backgroundColor: _isEditMode
+                      ? AppTheme.colors(context).editModeBackground
+                      : null,
                 ),
                 // Show close icon when active, edit icon with conditional color otherwise
                 child: _isEditMode
-                    ? Icon(Icons.close, color: Colors.white)
+                    ? Icon(
+                        Icons.close,
+                        color: AppTheme.colors(context).closeIcon,
+                      )
                     : Icon(
                         Icons.edit,
-                        color: _isDeleteMode ? Colors.grey : Colors.blueAccent,
+                        color: _isDeleteMode
+                            ? AppTheme.colors(context).editIconDisabled
+                            : AppTheme.colors(context).editIcon,
                       ),
               ),
             );
           }
 
-          // Third item is the delete routes button
-          if (index == 2) {
+          // Fourth item is the delete routes button
+          if (index == 3) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ElevatedButton(
@@ -214,22 +254,29 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                       },
                 style: ElevatedButton.styleFrom(
                   // Red background when delete mode is active
-                  backgroundColor: _isDeleteMode ? Colors.red : null,
+                  backgroundColor: _isDeleteMode
+                      ? AppTheme.colors(context).deleteModeBackground
+                      : null,
                 ),
                 // Show close icon when active, delete icon with conditional color otherwise
                 child: _isDeleteMode
-                    ? Icon(Icons.close, color: Colors.white)
+                    ? Icon(
+                        Icons.close,
+                        color: AppTheme.colors(context).closeIcon,
+                      )
                     : Icon(
                         Icons.delete,
-                        color: _isEditMode ? Colors.grey : Colors.redAccent,
+                        color: _isEditMode
+                            ? AppTheme.colors(context).deleteIconDisabled
+                            : AppTheme.colors(context).deleteIcon,
                       ),
               ),
             );
           }
 
           // Route buttons - display saved route pairs
-          // Index offset by 3 to account for add, edit, and delete buttons
-          final routeDouble = routeInfos[index - 3];
+          // Index offset by 4 to account for settings, add, edit, and delete buttons
+          final routeDouble = routeInfos[index - 4];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ElevatedButton(
@@ -239,10 +286,10 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
                       // Behavior changes based on active mode:
                       if (_isDeleteMode) {
                         // Delete mode: clicking deletes the route
-                        await _deleteRoute(context, index - 3);
+                        await _deleteRoute(context, index - 4);
                       } else if (_isEditMode) {
                         // Edit mode: clicking opens edit page
-                        await _editRoute(context, index - 3);
+                        await _editRoute(context, index - 4);
                       } else {
                         // Normal mode: clicking loads and displays route data
                         widget.onLoadingChanged(true);
@@ -264,9 +311,9 @@ class _RouteButtonsWidgetState extends State<RouteButtonsWidget> {
               style: ElevatedButton.styleFrom(
                 // Background color changes based on active mode
                 backgroundColor: _isDeleteMode
-                    ? Colors.red.shade100
+                    ? AppTheme.colors(context).deleteRouteBackground
                     : _isEditMode
-                    ? Colors.blue.shade100
+                    ? AppTheme.colors(context).editRouteBackground
                     : null,
               ),
               child: widget.isLoading
